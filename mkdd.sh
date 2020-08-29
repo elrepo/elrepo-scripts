@@ -2,7 +2,7 @@
 
 # Script to create a Driver Update Disk for RHEL.
 #
-# v1.0 June 2019.
+# v1.1 July 2019.
 #
 
 PROGNAME=$(basename $0)
@@ -52,14 +52,14 @@ cp $KMOD_RPM ./dd/rpms/x86_64/
 cp $KMOD_SRPM ./dd/src/
 
 # Create the repodata.
-createrepo -v --workers=1 ./dd/rpms/x86_64/
+createrepo -q --workers=1 ./dd/rpms/x86_64/
 if [ $? -ne 0 ]; then
 	echo "$PROGNAME: createrepo has failed." >&2
 	exit 5
 fi
 
 # Create the ISO9660 image.
-mkisofs -lR -V OEMDRV -input-charset utf8 -o $PACKNAME ./dd
+mkisofs -quiet -lR -V OEMDRV -input-charset utf8 -o $PACKNAME ./dd
 if [ $? -ne 0 ]; then
 	echo "$PROGNAME: mkisofs has failed." >&2
 	exit 6
