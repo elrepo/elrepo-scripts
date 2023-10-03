@@ -3,7 +3,22 @@
 # Script to create a Driver Update Disk for RHEL.
 #
 # v1.1 July 2019.
+# v1.2 June 2021 - add ISO signing
 #
+# From Phil:
+# To create and sign DUDs, place all kmod RPMs and SRPMs in a dir and use
+# thus:
+# 
+# for i in *.x86_64.rpm; do ./mkdd-v1.2 $i; done
+# 
+# You can also then verify the signatures of all asc files:
+# 
+# for i in *.asc; do gpg --verify $i; done
+#
+# Then publish them
+#
+# $ cp *.iso *.asc /home/buildsys/localrepo/dud/el8/x86_64/   (el8)
+# $ cp *.iso *.asc /home/buildsys/localrepo/dud/el9/x86_64/   (el9)
 
 PROGNAME=$(basename $0)
 
@@ -66,5 +81,11 @@ if [ $? -ne 0 ]; then
 else
 	rm -fr ./dd
 fi
+
+# Create signature file
+SHA256NAME=$(echo $PACKNAME | sed "s/iso/SHA256SUM/")
+sha256sum $PACKNAME > $SHA256NAME
+gpg --clearsign -a $SHA256NAME
+rm $SHA256NAME
 
 exit 0
