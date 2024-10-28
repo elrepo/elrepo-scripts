@@ -1,8 +1,14 @@
 /*
- * Description:
- * This app looks up the given PCI/USB VendorID and DeviceID and prints the corresponding name.
+ * Author:
+ * Tuan Hoang <tqhoang@elrepo.org>
  *
- * Author: Tuan Hoang <tqhoang@elrepo.org>
+ * Description:
+ * This app looks up the given PCI/USB VendorID and DeviceID and 
+ * prints the corresponding names.
+ *
+ * Note:
+ * For unknown vendors, it prints "UNKNOWN VENDOR <vendorID>"
+ * For unknown devices, it prints "UNKNOWN DEVICE <deviceID>"
  */
 #include <algorithm>
 #include <cctype>

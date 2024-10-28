@@ -8,9 +8,9 @@
 #
 # Output format:
 # (<kmod filename>)
-# <vendor name> <device name> [<vendor ID>:<device ID>] \\
+# [<vendor ID>:<device ID>] <vendor name> <device name> \\
 # ..
-# <vendor name> <device name> [<vendor ID>:<device ID>] \\
+# [<vendor ID>:<device ID>] <vendor name> <device name> \\
 # \\
 
 
