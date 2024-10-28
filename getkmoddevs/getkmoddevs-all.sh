@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# Author:
+# Tuan Hoang <tqhoang@elrepo.org>
+#
 # Description:
 # This script loops over all instaled kmods and calls getkmoddevs-single.sh on each *.ko file
 #

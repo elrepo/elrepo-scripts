@@ -1,5 +1,8 @@
 #!/bin/sh
 #
+# Author:
+# Tuan Hoang <tqhoang@elrepo.org>
+#
 # Description:
 # This script prints all the device info for a single kmod filename (*.ko)
 #
