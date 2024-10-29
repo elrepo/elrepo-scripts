@@ -15,6 +15,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <unordered_map>
 
 using namespace std;
 
@@ -32,8 +33,8 @@ const string ONE_SPACE(" ");
 const string TWO_SPACES("  ");
 
 // typedefs
-typedef map<string, string> vendors_map_t;
-typedef map<string, map<string, string>> devices_map_t;
+typedef unordered_map<string, string> vendors_map_t;
+typedef unordered_map<string, unordered_map<string, string>> devices_map_t;
 
 // function prototypess
 void print_usage(char* progname);
@@ -77,8 +78,8 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
-	map<string, string> vendors_map;
-	map<string, map<string, string>> devices_map;
+	vendors_map_t vendors_map;
+	devices_map_t devices_map;
 
 	int print_all = 0;
 	int print_numbers = 0;
@@ -270,7 +271,7 @@ void parse_ids(string const& ids_file, vendors_map_t& vendors_map, devices_map_t
                 		vendor_name = line.substr(line.find(TWO_SPACES) + TWO_SPACES.length());
 
 				vendors_map[vendor_id] = vendor_name;
-				devices_map[vendor_id] = map<string, string>();
+				devices_map[vendor_id] = unordered_map<string, string>();
         		}
 		}
 	}
