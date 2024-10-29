@@ -69,7 +69,7 @@ do
 	containsElement "`basename $kmod`" "${kmod_quirklist[@]}"
 	if [ $? == 1 ]
 	then
-		~/bin/getkmoddevs-single.sh $kmod
+		./getkmoddevs-single.sh $kmod
 	else
 		# hack for kmod-a2818
 		./lsdevname -n -v 10B5 -d 9054
