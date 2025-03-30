@@ -226,7 +226,7 @@ int main(int argc, char** argv)
 
             case 0:
                 optname = longopts[longindex].name;
-                cout << "Unhandled long_option: " << optname << endl;
+                cerr << "Unhandled long_option: " << optname << endl;
 
             case 'h': // -h or --help
             case '?': // Unrecognized option
@@ -417,7 +417,7 @@ void parse_json(Json::Value const &root)
             // and the new one has an empty subdevid
             if (!devices_map_iter->second.subdevid.empty() && device_info.subdevid.empty())
             {
-                cout << "Replacing devid/subdevid = ("
+                cerr << "Replacing devid/subdevid = ("
                      << devices_map_iter->second.devid << ","
                      << devices_map_iter->second.subdevid << ") "
                      << "with devid = ("
