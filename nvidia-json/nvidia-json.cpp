@@ -486,7 +486,7 @@ void print_nvidia_detect()
                   << "typedef unsigned short u_int16_t;" << endl;
 
     stringstream nvidia_footer;
-    nvidia_footer << "#endif  /* _NVIDIA_DETECT_H */" << endl;
+    nvidia_footer << "#endif /* _NVIDIA_DETECT_H */" << endl;
 
     cout << nvidia_header.str() << endl
          << print_nvidia_devices(LEGACYBRANCH_71XX, KERNELOPEN_FALSE).str() << endl
@@ -515,7 +515,7 @@ stringstream print_nvidia_devices(legacybranch_t legacybranch, kernelopen_t kern
         if (currentbranch_enum2array_map.find(kernelopen) != currentbranch_enum2array_map.end())
         {
             nvidia_output << "/* PCI device_ids supported by the current "
-                          << (kernelopen ? "open " : "proprietary ")
+                          << (kernelopen ? "open " : "")
                           << "driver */" << endl
                           << "static const u_int16_t " << currentbranch_enum2array_map[kernelopen] << " = {";
 
@@ -525,15 +525,16 @@ stringstream print_nvidia_devices(legacybranch_t legacybranch, kernelopen_t kern
                  devices_map_iter != devices_map.end();
                  devices_map_iter++)
             {
-                if (kernelopen == devices_map_iter->second.kernelopen)
+                if (legacybranch == devices_map_iter->second.legacybranch
+                    && kernelopen == devices_map_iter->second.kernelopen)
                 {
-                    // insert tab every 10 devices
+                    // insert tab before every row of devices
                     if (x % device_row_limit == 0)
                     {
                         nvidia_output << endl << ONE_TAB;
                     }
-
-                    if (x % device_row_limit >= 1)
+                    // otherwise insert a space before each device
+                    else if (x % device_row_limit >= 1)
                     {
                         nvidia_output << ONE_SPACE;
                     }
@@ -565,13 +566,13 @@ stringstream print_nvidia_devices(legacybranch_t legacybranch, kernelopen_t kern
             {
                 if (legacybranch == devices_map_iter->second.legacybranch)
                 {
-                    // insert tab every 10 devices
+                    // insert tab before every row of devices
                     if (x % device_row_limit == 0)
                     {
                         nvidia_output << endl << ONE_TAB;
                     }
-
-                    if (x % device_row_limit >= 1)
+                    // otherwise insert a space before each device
+                    else if (x % device_row_limit >= 1)
                     {
                         nvidia_output << ONE_SPACE;
                     }
