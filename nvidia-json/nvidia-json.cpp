@@ -242,7 +242,6 @@ int main(int argc, char** argv)
         jsonFileName = argv[optind];
     }
 
-
     // open the JSON file and read it into the string
     ifstream jsonFile{ jsonFileName };
 
@@ -516,7 +515,7 @@ stringstream print_nvidia_devices(legacybranch_t legacybranch, kernelopen_t kern
         if (currentbranch_enum2array_map.find(kernelopen) != currentbranch_enum2array_map.end())
         {
             nvidia_output << "/* PCI device_ids supported by the current "
-                          << (kernelopen ? "open " : "closed ")
+                          << (kernelopen ? "open " : "proprietary ")
                           << "driver */" << endl
                           << "static const u_int16_t " << currentbranch_enum2array_map[kernelopen] << " = {";
 
