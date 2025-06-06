@@ -4,12 +4,13 @@
 #
 # v1.1 July 2019.
 # v1.2 June 2021 - add ISO signing
+# v1.3 June 2025 - add elrepo v2 key as the default key
 #
 # From Phil:
 # To create and sign DUDs, place all kmod RPMs and SRPMs in a dir and use
 # thus:
 # 
-# for i in *.x86_64.rpm; do ./mkdd-v1.2 $i; done
+# for i in *.x86_64.rpm; do ./mkdd.sh $i; done
 # 
 # You can also then verify the signatures of all asc files:
 # 
@@ -85,7 +86,10 @@ fi
 # Create signature file
 SHA256NAME=$(echo $PACKNAME | sed "s/iso/SHA256SUM/")
 sha256sum $PACKNAME > $SHA256NAME
-gpg --clearsign -a $SHA256NAME
+
+# Sign with default key
+DEFAULT_KEY='elrepo.org (RPM Signing Key v2 for elrepo.org) <secure@elrepo.org>'
+gpg --default-key "$DEFAULT_KEY" --clearsign -a $SHA256NAME
 rm $SHA256NAME
 
 exit 0
