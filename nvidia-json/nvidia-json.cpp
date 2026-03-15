@@ -2,7 +2,7 @@
  *  nvidia-json - Parses the NVIDIA supported-gpus.json file and
  *                generates the nvidia-detect.h header file
  *
- *  Copyright (C) 2025 Tuan Hoang <tqhoang@elrepo.org>
+ *  Copyright (C) 2025-2026 Tuan Hoang <tqhoang@elrepo.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -464,7 +464,7 @@ void print_nvidia_detect()
     nvidia_header << "/*" << endl
                   << " *  nvidia-detect.h - PCI device_ids for NVIDIA graphics cards" << endl
                   << " *" << endl
-                  << " *  Copyright (C) 2013-2025 Philip J Perry <phil@elrepo.org>" << endl
+                  << " *  Copyright (C) 2013-2026 Philip J Perry <phil@elrepo.org>" << endl
                   << " *" << endl
                   << " *  This program is free software; you can redistribute it and/or modify" << endl
                   << " *  it under the terms of the GNU General Public License as published by" << endl
