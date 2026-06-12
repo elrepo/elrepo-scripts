@@ -21,12 +21,12 @@
 # Array for RHEL kmods blacklist
 kmod_blacklist=("kvdo.ko" "uds.ko" "oracleasm.ko")
 # Append ELRepo EL9 and EL10 kmods
-kmod_blacklist+=("drbd.ko" "drbd_transport_lb-tcp.ko" "drbd_transport_rdma.ko" "drbd_transport_tcp.ko" "dvb-core.ko" "ecryptfs.ko" "em28xx-alsa.ko" "em28xx-dvb.ko" "em28xx-rc.ko" "em28xx-v4l.ko" "floppy.ko" "hfs.ko" "hfsplus.ko" "hid-mcp2221.ko" "led-class-multicolor.ko" "leds-gpio.ko" "leds-pca9532.ko" "libsas.ko" "lgdt330x.ko" "megaraid_mm.ko" "mlx4_en.ko" "mlx4_ib.ko" "mptctl.ko" "mt792x-usb.ko" "nvidia-drm.ko" "nvidia-modeset.ko" "nvidia-peermem.ko" "nvidia-uvm.ko" "ovpn-dco-v2.ko" "ovpn.ko" "rc-core.ko" "rc-pinnacle-pctv-hd.ko" "rtw88_8723d.ko" "rtw88_8812a.ko" "rtw88_8814a.ko" "rtw88_8821a.ko" "rtw88_8821c.ko" "rtw88_88xxa.ko" "rtw88_usb.ko" "si2157.ko" "tvp5150.ko" "usbip-core.ko" "usbip-host.ko" "vhci-hcd.ko" "v4l2-async.ko" "v4l2-fwnode.ko" "v4l2loopback.ko" "xc2028.ko" "xt_time.ko" "xt_u32.ko" "zl10353.ko")
+kmod_blacklist+=("drbd.ko" "drbd_transport_lb-tcp.ko" "drbd_transport_rdma.ko" "drbd_transport_tcp.ko" "dvb-core.ko" "ecryptfs.ko" "em28xx-alsa.ko" "em28xx-dvb.ko" "em28xx-rc.ko" "em28xx-v4l.ko" "floppy.ko" "hfs.ko" "hfsplus.ko" "hid-mcp2221.ko" "led-class-multicolor.ko" "leds-gpio.ko" "leds-pca9532.ko" "libsas.ko" "lgdt330x.ko" "megaraid_mm.ko" "mlx4_en.ko" "mlx4_ib.ko" "mptctl.ko" "mt792x-usb.ko" "nvidia-drm.ko" "nvidia-modeset.ko" "nvidia-peermem.ko" "nvidia-uvm.ko" "ovpn-dco-v2.ko" "ovpn.ko" "rc-core.ko" "rc-pinnacle-pctv-hd.ko" "rtw88_8723d.ko" "rtw88_8812a.ko" "rtw88_8814a.ko" "rtw88_8821a.ko" "rtw88_8821c.ko" "rtw88_88xxa.ko" "rtw88_usb.ko" "tvp5150.ko" "usbip-core.ko" "usbip-host.ko" "vhci-hcd.ko" "v4l2-async.ko" "v4l2-fwnode.ko" "v4l2loopback.ko" "xc2028.ko" "xt_time.ko" "xt_u32.ko" "zl10353.ko")
 # Append ELRepo EL8-only kmods
 kmod_blacklist+=("ath.ko" "bnxt_re.ko" "ftsteutates.ko" "handshake.ko" "iwlegacy.ko" "jfs.ko" "lru_cache.ko" "sch_cake.ko" "sysv.ko" "wireguard.ko")
 
 # Array for kmod quirklist
-kmod_quirklist=("a2818.ko")
+kmod_quirklist=("a2818.ko" "si2157.ko")
 
 # Array for kmod RPM names
 kmod_rpmlist=()
@@ -72,8 +72,18 @@ do
 		./getkmoddevs-single.sh $kmod
 	else
 		# hack for kmod-a2818
-		./lsdevname -n -v 10B5 -d 9054
-		echo " \\\\"
-		echo " \\\\"
+		if [ "`basename $kmod`" == "a2818.ko" ]
+		then
+			./lsdevname -n -v 10B5 -d 9054
+			echo " \\\\"
+			echo " \\\\"
+		elif [ "`basename $kmod`" == "si2157.ko" ]
+		then
+			echo "[i2c:si2141] I2C UNKNOWN DEVICE si2141 \\\\"
+			echo "[i2c:si2146] I2C UNKNOWN DEVICE si2146 \\\\"
+			echo "[i2c:si2157] I2C UNKNOWN DEVICE si2157 \\\\"
+			echo "[i2c:si2177] I2C UNKNOWN DEVICE si2177 \\\\"
+			echo " \\\\"
+		fi
 	fi
 done
