@@ -61,7 +61,7 @@ function printUsbInfo() {
 
 
 #
-# PCI Device ID's print 8 characters
+# PCI Device IDs
 #
 pci_array+=( $(modinfo $1 | grep alias | grep -e "pci:" | grep "d\*sv" | awk '{print substr($0,26,4)":"}' | sort | uniq) )
 pci_array+=( $(modinfo $1 | grep alias | grep -e "pci:" | grep -v "d\*sv" | awk '{print substr($0,26,4)":"substr($0,35,4)}' | sort | uniq) )
@@ -73,10 +73,10 @@ pci_array+=( $(modinfo $1 | grep alias | grep -e "pci:" | grep -v "d\*sv" | awk 
 
 
 #
-# USB Device ID's only print 4 characters
+# USB Device IDs
 #
-usb_array+=( $(modinfo $1 | grep alias | grep -e "usb:" | grep "p\*d\*dc" | awk '{print substr($0,22,4)":"}' | sort | uniq) )
-usb_array+=( $(modinfo $1 | grep alias | grep -e "usb:" | grep -v "p\*d\*dc" | awk '{print substr($0,22,4)":"substr($0,27,4)}' | sort | uniq) )
+usb_array+=( $(modinfo $1 | grep alias | grep -e "usb:" | grep -v "v\*p\*d\*dc" | grep "p\*d\*dc" | awk '{print substr($0,22,4)":"}' | sort | uniq) )
+usb_array+=( $(modinfo $1 | grep alias | grep -e "usb:" | grep -v "v\*p\*d\*dc" | grep -v "p\*d\*dc" | awk '{print substr($0,22,4)":"substr($0,27,4)}' | sort | uniq) )
 
 # will echo number of elements in array
 # echo ${#usb_array[@]}
@@ -85,7 +85,7 @@ usb_array+=( $(modinfo $1 | grep alias | grep -e "usb:" | grep -v "p\*d\*dc" | a
 
 
 #
-# HID Device ID's only print 4 characters
+# HID Device IDs
 #
 hid_array+=( $(modinfo $1 | grep alias | grep -e "hid:" | awk '{print substr($0,33,4)":"substr($0,42,4)}' | sort | uniq) )
 
