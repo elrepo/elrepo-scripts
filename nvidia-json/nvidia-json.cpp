@@ -53,6 +53,7 @@ typedef enum
     LEGACYBRANCH_367XX,
     LEGACYBRANCH_390XX,
     LEGACYBRANCH_470XX,
+    LEGACYBRANCH_580XX,
     LEGACYBRANCH_UNKNOWN
 } legacybranch_t;
 
@@ -95,6 +96,7 @@ const string LEGACYBRANCH_340XX_VERSION   = "340.xx";
 const string LEGACYBRANCH_367XX_VERSION   = "367.xx";
 const string LEGACYBRANCH_390XX_VERSION   = "390.xx";
 const string LEGACYBRANCH_470XX_VERSION   = "470.xx";
+const string LEGACYBRANCH_580XX_VERSION   = "580.xx";
 const string LEGACYBRANCH_UNKNOWN_VERSION = "UNKNOWN";
 
 const string LEGACYBRANCH_FALSE_ARRAY   = "";
@@ -106,6 +108,7 @@ const string LEGACYBRANCH_340XX_ARRAY   = "nv_340xx_pci_ids[]";
 const string LEGACYBRANCH_367XX_ARRAY   = "nv_367xx_pci_ids[]";
 const string LEGACYBRANCH_390XX_ARRAY   = "nv_390xx_pci_ids[]";
 const string LEGACYBRANCH_470XX_ARRAY   = "nv_470xx_pci_ids[]";
+const string LEGACYBRANCH_580XX_ARRAY   = "nv_580xx_pci_ids[]";
 const string LEGACYBRANCH_UNKNOWN_ARRAY = "nv_unknown_pci_ids[]";
 
 bool create_legacybranch_ver2enum_map(map<legacybranch_t, string> &m1, map<string, legacybranch_t> &m2)
@@ -119,6 +122,7 @@ bool create_legacybranch_ver2enum_map(map<legacybranch_t, string> &m1, map<strin
     m1[LEGACYBRANCH_367XX]   = LEGACYBRANCH_367XX_VERSION;
     m1[LEGACYBRANCH_390XX]   = LEGACYBRANCH_390XX_VERSION;
     m1[LEGACYBRANCH_470XX]   = LEGACYBRANCH_470XX_VERSION;
+    m1[LEGACYBRANCH_580XX]   = LEGACYBRANCH_580XX_VERSION;
     m1[LEGACYBRANCH_UNKNOWN] = LEGACYBRANCH_UNKNOWN_VERSION;
 
     m2[LEGACYBRANCH_FALSE_VERSION]   = LEGACYBRANCH_FALSE;
@@ -130,6 +134,7 @@ bool create_legacybranch_ver2enum_map(map<legacybranch_t, string> &m1, map<strin
     m2[LEGACYBRANCH_367XX_VERSION]   = LEGACYBRANCH_367XX;
     m2[LEGACYBRANCH_390XX_VERSION]   = LEGACYBRANCH_390XX;
     m2[LEGACYBRANCH_470XX_VERSION]   = LEGACYBRANCH_470XX;
+    m2[LEGACYBRANCH_580XX_VERSION]   = LEGACYBRANCH_580XX;
     m2[LEGACYBRANCH_UNKNOWN_VERSION] = LEGACYBRANCH_UNKNOWN;
 
     return true;
@@ -149,6 +154,7 @@ bool create_legacybranch_enum2array_map(map<legacybranch_t, string> &m)
     m[LEGACYBRANCH_367XX]   = LEGACYBRANCH_367XX_ARRAY;
     m[LEGACYBRANCH_390XX]   = LEGACYBRANCH_390XX_ARRAY;
     m[LEGACYBRANCH_470XX]   = LEGACYBRANCH_470XX_ARRAY;
+    m[LEGACYBRANCH_580XX]   = LEGACYBRANCH_580XX_ARRAY;
     m[LEGACYBRANCH_UNKNOWN] = LEGACYBRANCH_UNKNOWN_ARRAY;
     return true;
 }
@@ -280,18 +286,18 @@ int main(int argc, char** argv)
     // parse JSON data into our deviceinfo data format
     parse_json(root);
 
-    // inject legacybranch devices missing from the 580.xx JSON file
+    // inject legacybranch devices missing from the 59x.xx JSON file
     inject_nvidia_device("0x0FC0", "", "GeForce GT 640 OEM", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
     inject_nvidia_device("0x0FC1", "", "GeForce GT 640", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
     inject_nvidia_device("0x0FC2", "", "GeForce GT 630 OEM", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
+    // inject_nvidia_device("0x137D", "", "GeForce GT 940A", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
+    // inject_nvidia_device("0x1BB3", "", "Tesla P4", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
+    // inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-16GB", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
 
-    // inject current devices missing from the 580.xx JSON file
-    inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x137D", "", "GeForce 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x1BB3", "", "Tesla P4", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-32GB", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    // inject current devices missing from the 59x.xx JSON file
     inject_nvidia_device("0x1EB4", "", "Tesla T4G", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
-    inject_nvidia_device("0x1EB8", "", "Tesla T4", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
+    // inject_nvidia_device("0x1EB8", "", "Tesla T4", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
     inject_nvidia_device("0x1F09", "", "GeForce GTX 1660 SUPER", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
     inject_nvidia_device("0x20B1", "", "NVIDIA A100-PCIE-40GB", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
     inject_nvidia_device("0x20F0", "", "NVIDIA A100-PG506-207", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
@@ -498,6 +504,7 @@ void print_nvidia_detect()
          << print_nvidia_devices(LEGACYBRANCH_367XX, KERNELOPEN_FALSE).str() << endl
          << print_nvidia_devices(LEGACYBRANCH_390XX, KERNELOPEN_FALSE).str() << endl
          << print_nvidia_devices(LEGACYBRANCH_470XX, KERNELOPEN_FALSE).str() << endl
+         << print_nvidia_devices(LEGACYBRANCH_580XX, KERNELOPEN_FALSE).str() << endl
          << print_nvidia_devices(LEGACYBRANCH_FALSE, KERNELOPEN_FALSE).str() << endl
          << print_nvidia_devices(LEGACYBRANCH_FALSE, KERNELOPEN_TRUE).str() << endl
          << nvidia_footer.str() << endl;
