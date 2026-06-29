@@ -287,7 +287,7 @@ int main(int argc, char** argv)
 
     // inject current devices missing from the 580.xx JSON file
     inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x137D", "", "GeForce GT 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x137D", "", "GeForce 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1BB3", "", "Tesla P4", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-32GB", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1EB4", "", "Tesla T4G", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
