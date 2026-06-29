@@ -280,19 +280,19 @@ int main(int argc, char** argv)
     // parse JSON data into our deviceinfo data format
     parse_json(root);
 
-    // inject legacybranch devices missing from the 5xx.xx JSON file
-    inject_nvidia_device("0x0FC0", "", "GeForce GT 640", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
+    // inject legacybranch devices missing from the 580.xx JSON file
+    inject_nvidia_device("0x0FC0", "", "GeForce GT 640 OEM", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
     inject_nvidia_device("0x0FC1", "", "GeForce GT 640", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x0FC2", "", "GeForce GT 630", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x0FF3", "", "GeForce GT 745A", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x137D", "", "GeForce GT 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x0FC2", "", "GeForce GT 630 OEM", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
 
-    // inject current devices missing from the 5xx.xx JSON file
-    inject_nvidia_device("0x1F09", "", "NVIDIA Graphics Device", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    // inject current devices missing from the 580.xx JSON file
+    inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x137D", "", "GeForce GT 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1BB3", "", "Tesla P4", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-32GB", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x1EB4", "", "NVIDIA T4G", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x1EB4", "", "Tesla T4G", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1EB8", "", "Tesla T4", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x1F09", "", "GeForce GTX 1660 SUPER", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x20B1", "", "NVIDIA A100-PCIE-40GB", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x20F0", "", "NVIDIA A100-PG506-207", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x20F2", "", "NVIDIA A100-PG506-217", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
