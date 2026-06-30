@@ -290,7 +290,7 @@ int main(int argc, char** argv)
     inject_nvidia_device("0x0FC0", "", "GeForce GT 640 OEM", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
     inject_nvidia_device("0x0FC1", "", "GeForce GT 640", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
     inject_nvidia_device("0x0FC2", "", "GeForce GT 630 OEM", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
     // inject_nvidia_device("0x137D", "", "GeForce GT 940A", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
     // inject_nvidia_device("0x1BB3", "", "Tesla P4", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
     // inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-16GB", LEGACYBRANCH_580XX, KERNELOPEN_FALSE);
