@@ -287,12 +287,10 @@ int main(int argc, char** argv)
     inject_nvidia_device("0x0FF3", "", "Quadro K420", LEGACYBRANCH_470XX, KERNELOPEN_FALSE);
 
     // inject current devices missing from the 580.xx JSON file
-    inject_nvidia_device("0x137D", "", "GeForce 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x1BB3", "", "Tesla P4", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
-    inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-32GB", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x137D", "", "NVIDIA GeForce 940A", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
+    inject_nvidia_device("0x1DF5", "", "Tesla V100-SXM2-16GB", LEGACYBRANCH_FALSE, KERNELOPEN_FALSE);
     inject_nvidia_device("0x1EB4", "", "Tesla T4G", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
-    inject_nvidia_device("0x1EB8", "", "Tesla T4", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
-    inject_nvidia_device("0x1F09", "", "GeForce GTX 1660 SUPER", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
+    inject_nvidia_device("0x1F09", "", "NVIDIA GeForce GTX 1660 SUPER", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
     inject_nvidia_device("0x20B1", "", "NVIDIA A100-PCIE-40GB", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
     inject_nvidia_device("0x20F0", "", "NVIDIA A100-PG506-207", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
     inject_nvidia_device("0x20F2", "", "NVIDIA A100-PG506-217", LEGACYBRANCH_FALSE, KERNELOPEN_TRUE);
