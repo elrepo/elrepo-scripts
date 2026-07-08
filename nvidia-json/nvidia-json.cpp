@@ -524,23 +524,42 @@ stringstream print_nvidia_devices(legacybranch_t legacybranch, kernelopen_t kern
                  devices_map_iter != devices_map.end();
                  devices_map_iter++)
             {
-                if (legacybranch == devices_map_iter->second.legacybranch
-                    && kernelopen == devices_map_iter->second.kernelopen)
+                if (legacybranch == devices_map_iter->second.legacybranch)
                 {
-                    // insert tab before every row of devices
-                    if (x % device_row_limit == 0)
+                    if (kernelopen && (kernelopen == devices_map_iter->second.kernelopen))
                     {
-                        nvidia_output << endl << ONE_TAB;
+                        // insert tab before every row of devices
+                        if (x % device_row_limit == 0)
+                        {
+                            nvidia_output << endl << ONE_TAB;
+                        }
+                        // otherwise insert a space before each device
+                        else if (x % device_row_limit >= 1)
+                        {
+                            nvidia_output << ONE_SPACE;
+                        }
+
+                        nvidia_output << devices_map_iter->first << ",";
+
+                        x++;
                     }
-                    // otherwise insert a space before each device
-                    else if (x % device_row_limit >= 1)
+                    else if (!kernelopen)
                     {
-                        nvidia_output << ONE_SPACE;
+                        // insert tab before every row of devices
+                        if (x % device_row_limit == 0)
+                        {
+                            nvidia_output << endl << ONE_TAB;
+                        }
+                        // otherwise insert a space before each device
+                        else if (x % device_row_limit >= 1)
+                        {
+                            nvidia_output << ONE_SPACE;
+                        }
+
+                        nvidia_output << devices_map_iter->first << ",";
+
+                        x++;
                     }
-
-                    nvidia_output << devices_map_iter->first << ",";
-
-                    x++;
                 }
             }
 
