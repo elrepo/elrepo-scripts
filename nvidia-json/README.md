@@ -16,14 +16,14 @@ make
 
 ## Usage
 1. Download and extract the [NVIDIA *run* file](https://www.nvidia.com/en-us/drivers/unix/)
-   Note: The examples below use the production branch version 570.xxx.xxx
+   Note: The examples below use the production branch version 595.xxx.xxx
 ```
-sh NVIDIA-Linux-x86_64-570.xxx.xxx.run --extract-only
+sh NVIDIA-Linux-x86_64-595.xxx.xxx.run --extract-only
 ```
 
 2. Copy the extracted supported-gpus.json file to the nvidia-json directory
 ```
-cp NVIDIA-Linux-x86_64-570.xxx.xxx/supported-gpus/supported-gpus.json <path-to-nvidia-json>
+cp NVIDIA-Linux-x86_64-595.xxx.xxx/supported-gpus/supported-gpus.json <path-to-nvidia-json>
 ```
 
 3. Run nvidia-json and generate the new nvidia-detect.h
